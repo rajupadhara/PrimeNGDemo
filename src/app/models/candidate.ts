@@ -1,11 +1,12 @@
-import { Favorites } from 'app/models/favorites';
+import { Favourite } from 'app/models/favourite';
+
 
 export class Candidate {
   id: number;
   Name: string;
   Dob: Date;
   Gender: string;
-  FavoriteCollection: Favorites[];
+  FavouriteCollection: Favourite[];
 }
 
 
