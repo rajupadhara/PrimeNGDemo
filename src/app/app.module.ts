@@ -1,24 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, TemplateRef } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
+import { CandidateDetailComponent } from './components/candidate-detail/candidate-detail.component';
 import { CandidateInfoService } from './services/candidate-info.service';
 
-import { DataTableModule, DialogModule, InputTextModule } from 'primeng/primeng';
+import { DataTableModule, SharedModule, DialogModule, ButtonModule,
+  PanelModule, InputTextModule, CalendarModule } from 'primeng/primeng';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CandidateListComponent
+    CandidateListComponent,
+    CandidateDetailComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
+    FormsModule,
     DataTableModule,
+    SharedModule,
     DialogModule,
-    InputTextModule
+    ButtonModule,
+    PanelModule,
+    InputTextModule,
+    CalendarModule
   ],
   providers: [CandidateInfoService],
   bootstrap: [AppComponent]

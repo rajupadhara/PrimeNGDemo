@@ -9,17 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandidateListComponent implements OnInit {
   candidateList: Candidate[];
-
+  candidate: Candidate;
+  display: boolean;
   constructor(private candidateService: CandidateInfoService ) { }
 
   ngOnInit() {
     this.getAllCandidates();
   }
 
-getAllCandidates() {
-    return this.candidateService.getAllCandidates().subscribe(
-        data => this.candidateList = data
-    );
-}
+  getAllCandidates() {
+      return this.candidateService.getAllCandidates().subscribe(
+          data => this.candidateList = data
+      );
+  }
+  selectCandidate(candidate: Candidate) {
+    this.candidate = candidate;
+    this.display = true;
+  }
 
 }
