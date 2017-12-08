@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
 import { CandidateDetailComponent } from './components/candidate-detail/candidate-detail.component';
+import { FavouriteInfoComponent } from './components/favourite-info/favourite-info.component';
 import { CandidateInfoService } from './services/candidate-info.service';
 
 import { DataTableModule, SharedModule, DialogModule, ButtonModule,
   PanelModule, InputTextModule, CalendarModule } from 'primeng/primeng';
-import { FavouriteInfoComponent } from './components/favourite-info/favourite-info.component';
+
 
 
 @NgModule({

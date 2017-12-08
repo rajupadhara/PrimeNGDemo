@@ -9,7 +9,6 @@ import { Favourite } from './../../models/favourite';
 })
 export class CandidateDetailComponent implements OnInit {
   @Input('candidate') candidate: Candidate;
-  favouriteList: Array<Favourite> = [];
 
   constructor() { }
 
@@ -17,12 +16,19 @@ export class CandidateDetailComponent implements OnInit {
   }
 
   addFavourite() {
-    this.favouriteList.push(new Favourite());
+    this.candidate.FavouriteCollection.push({Key: '', Value: ''});
+  }
+
+  getDOB(event) {
+    console.log(event);
+
   }
 
   saveCandidateInfo() {
     console.log(this.candidate);
-    console.log(this.favouriteList);
+    console.log( this.candidate.FavouriteCollection);
   }
+
+
 
 }

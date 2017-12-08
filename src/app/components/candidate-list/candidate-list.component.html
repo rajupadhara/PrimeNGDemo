@@ -1,33 +1,27 @@
-
-<ul>
-  <li *ngFor="let candidate of candidateList">
-    {{candidate.Name}}
-  </li>
-</ul>
-
-<p-dataTable [value]="candidateList" [rows]="10" [paginator]="true">
-  <p-header>Candidate List</p-header>
-  <p-column field="Id" header="Id"></p-column>
-  <p-column field="Name" header="Name"></p-column>
-  <p-column field="Dob" header="DOB">
-      <ng-template let-row="rowData" pTemplate="body">
-          {{row.Dob | date:'MM/dd/yyyy'}}
+<div class="container">
+  <p-dataTable [value]="candidateList" [rows]="10" [paginator]="true">
+    <p-header>Candidate List</p-header>
+    <p-column field="Id" header="Id"></p-column>
+    <p-column field="Name" header="Name"></p-column>
+    <p-column field="Dob" header="DOB">
+        <ng-template let-row="rowData" pTemplate="body">
+            {{row.Dob | date:'MM/dd/yyyy'}}
+        </ng-template>
+    </p-column>
+    <p-column field="Gender" header="Gender"></p-column>
+    <p-column styleClass="col-button"  [style]="{'width':'75px'}">
+      <!-- <ng-template pTemplate="header">
+        <button type="button" pButton  icon="fa-edit"></button>
+      </ng-template> -->
+      <ng-template let-candidate="rowData" pTemplate="body">
+        <button type="button" pButton (click)="selectCandidate(candidate)"  icon="fa-edit" ></button>
       </ng-template>
-  </p-column>
-  <p-column field="Gender" header="Gender"></p-column>
-  <p-column styleClass="col-button"  [style]="{'width':'75px'}">
-    <!-- <ng-template pTemplate="header">
-      <button type="button" pButton  icon="fa-edit"></button>
-    </ng-template> -->
-    <ng-template let-candidate="rowData" pTemplate="body">
-      <button type="button" pButton (click)="selectCandidate(candidate)"  icon="fa-edit" ></button>
-    </ng-template>
-  </p-column>
-</p-dataTable>
+    </p-column>
+  </p-dataTable>
 
-<div *ngIf="candidate">
-    <p-dialog header="Edit Candidate Detail" [(visible)]="display" modal="modal" width="500" [responsive]="true">
-        <app-candidate-detail [candidate]="candidate"></app-candidate-detail>
-      </p-dialog>
+  <div *ngIf="candidate">
+      <p-dialog header="Edit Candidate Detail" [(visible)]="display" modal="modal" width="500" [responsive]="true">
+          <app-candidate-detail [candidate]="candidate"></app-candidate-detail>
+        </p-dialog>
+  </div>
 </div>
-

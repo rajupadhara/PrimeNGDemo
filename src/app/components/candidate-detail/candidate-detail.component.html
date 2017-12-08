@@ -13,7 +13,8 @@
         <div class="form-group">
           <div class="ui-inputgroup">
               <span class="ui-float-label">
-                  <p-calendar id="dob" [ngModel]="candidate.Dob | date : 'shortDate'"  name="Dob"  [showIcon]="true" reqired></p-calendar>
+                  <p-calendar id="dob" [ngModel]="candidate.Dob | date: 'MM/dd/yyyy'"  name="Dob"  [showIcon]="true"
+                      [monthNavigator]="true" [yearNavigator]="true" (onBlur)="getDOB($event)"></p-calendar>
                   <label for="dob">DOB</label>
               </span>
           </div>

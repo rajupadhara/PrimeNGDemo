@@ -2,12 +2,12 @@
 <div class="form-group">
     <div class="ui-inputgroup">
         <span class="ui-float-label">
-            <input id="favouriteKey" type="text" [(ngModel)]="favourite.Key" size="15" />
+            <input id="favouriteKey" type="text" pInputText [(ngModel)]="favourite.Key" size="15" />
             <label for="favouriteKey">Favourite Key</label>
         </span>
 
         <span class="ui-float-label">
-            <input id="favouriteValue" type="text" [(ngModel)]="favourite.Value" size="15"/>
+            <input id="favouriteValue" type="text" pInputText [(ngModel)]="favourite.Value" size="15"/>
             <label for="favouriteValue">Favourite Value</label>
         </span>
         <button pButton type="button" icon="fa-close" class="ui-button-danger"></button>
