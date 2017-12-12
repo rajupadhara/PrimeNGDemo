@@ -11,7 +11,7 @@ import { FavouriteInfoComponent } from './components/favourite-info/favourite-in
 import { CandidateInfoService } from './services/candidate-info.service';
 
 import { DataTableModule, SharedModule, DialogModule, ButtonModule,
-  PanelModule, InputTextModule, CalendarModule } from 'primeng/primeng';
+  PanelModule, InputTextModule, CalendarModule, SelectButtonModule, DropdownModule } from 'primeng/primeng';
 
 
 
@@ -33,7 +33,9 @@ import { DataTableModule, SharedModule, DialogModule, ButtonModule,
     ButtonModule,
     PanelModule,
     InputTextModule,
-    CalendarModule
+    CalendarModule,
+    SelectButtonModule,
+    DropdownModule
   ],
   providers: [CandidateInfoService],
   bootstrap: [AppComponent]

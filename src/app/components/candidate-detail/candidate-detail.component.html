@@ -4,7 +4,7 @@
         <div class="form-group">
             <div class="ui-inputgroup">
                 <span class="ui-float-label">
-                    <input id="candidateName" type="text" pInputText  [(ngModel)]="candidate.Name" name="Name" required />
+                    <input id="candidateName" type="text" pInputText  [(ngModel)]="candidate.name" name="name" required />
                     <label for="candidateName">Candidate Name</label>
                 </span>
                 <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
@@ -13,8 +13,8 @@
         <div class="form-group">
           <div class="ui-inputgroup">
               <span class="ui-float-label">
-                  <p-calendar id="dob" [ngModel]="candidate.Dob | date: 'MM/dd/yyyy'"  name="Dob"  [showIcon]="true"
-                      [monthNavigator]="true" [yearNavigator]="true" (onBlur)="getDOB($event)"></p-calendar>
+                  <p-calendar id="dob" [ngModel]="candidate.dob | date: 'MM/dd/yyyy'"  name="dob"  [showIcon]="true"
+                      [monthNavigator]="true" [yearNavigator]="true" yearRange="1925:2015"   (onSelect)="getDOB($event)"></p-calendar>
                   <label for="dob">DOB</label>
               </span>
           </div>
@@ -22,11 +22,12 @@
 
         <div class="form-group">
             <div class="ui-inputgroup">
-                <span class="ui-float-label">
+                <p-dropdown [options]="genderList" [(ngModel)]="selectedGender" name="gender" optionLabel="name" [style]="{'width':'150px'}"></p-dropdown>
+                <!-- <span class="ui-float-label">
                     <input type="text" id="gender" pInputText  [(ngModel)]="candidate.Gender" name="Gender"  required/>
-                    <label for="gender">Gender</label>
-                </span>
-                <span class="ui-inputgroup-addon"><i [ngClass]= "(candidate.Gender=='M'? 'fa fa-male':'fa fa-female')"></i></span>
+                     <label for="gender">Gender</label>
+                </span> -->
+                <span class="ui-inputgroup-addon"><i [ngClass]= "(selectedGender.code=='M'? 'fa fa-male':'fa fa-female')"></i></span>
             </div>
         </div>
 
@@ -34,7 +35,8 @@
           <button pButton type="button" (click)="addFavourite()" label="Add Favourite"  class="ui-button-info"></button>
         </div>
         <div class="form-group">
-            <app-favourite-info *ngFor="let favourite of candidate.FavouriteCollection" [favourite]="favourite"></app-favourite-info>
+            <app-favourite-info *ngFor="let favourite of candidate.favouriteCollection" [favourite]="favourite"
+              (deleteFavouriteNotify) = "deleteFavourite($event)"></app-favourite-info>
         </div>
         <div class="form-group">
             <button pButton type="submit" label="Save" class="ui-button-success"  [disabled]="!candiateForm.form.valid" ></button>

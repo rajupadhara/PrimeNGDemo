@@ -15,6 +15,7 @@ export class CandidateListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCandidates();
+    console.log(this.candidateList );
   }
 
   getAllCandidates() {
@@ -22,9 +23,14 @@ export class CandidateListComponent implements OnInit {
           data => this.candidateList = data
       );
   }
+
   selectCandidate(candidate: Candidate) {
     this.candidate = candidate;
     this.display = true;
   }
+
+
+
+
 
 }

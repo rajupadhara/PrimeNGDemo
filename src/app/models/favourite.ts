@@ -1,4 +1,4 @@
 export class Favourite {
-  Key: string;
-  Value: string;
+  favKey: string;
+  favValue: string;
 }

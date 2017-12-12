@@ -1,14 +1,14 @@
 <div class="container">
   <p-dataTable [value]="candidateList" [rows]="10" [paginator]="true">
     <p-header>Candidate List</p-header>
-    <p-column field="Id" header="Id"></p-column>
-    <p-column field="Name" header="Name"></p-column>
-    <p-column field="Dob" header="DOB">
+    <p-column field="id" header="Id"></p-column>
+    <p-column field="name" header="Name"></p-column>
+    <p-column field="dob" header="DOB">
         <ng-template let-row="rowData" pTemplate="body">
-            {{row.Dob | date:'MM/dd/yyyy'}}
+            {{row.dob | date:'MM/dd/yyyy'}}
         </ng-template>
     </p-column>
-    <p-column field="Gender" header="Gender"></p-column>
+    <p-column field="gender" header="Gender"></p-column>
     <p-column styleClass="col-button"  [style]="{'width':'75px'}">
       <!-- <ng-template pTemplate="header">
         <button type="button" pButton  icon="fa-edit"></button>

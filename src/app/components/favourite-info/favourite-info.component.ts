@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Favourite } from 'app/models/favourite';
 
 @Component({
@@ -8,10 +9,14 @@ import { Favourite } from 'app/models/favourite';
 })
 export class FavouriteInfoComponent implements OnInit {
   @Input('favourite') favourite: Favourite;
-
+  @Output() deleteFavouriteNotify: EventEmitter<Favourite> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  deleteFavourite(favourite: Favourite ) {
+      this.deleteFavouriteNotify.emit(favourite);
   }
 
 }
