@@ -1,27 +1,33 @@
 <div class="container">
-  <p-dataTable [value]="candidateList" [rows]="10" [paginator]="true">
-    <p-header>Candidate List</p-header>
-    <p-column field="id" header="Id"></p-column>
-    <p-column field="name" header="Name"></p-column>
-    <p-column field="dob" header="DOB">
-        <ng-template let-row="rowData" pTemplate="body">
-            {{row.dob | date:'MM/dd/yyyy'}}
-        </ng-template>
-    </p-column>
-    <p-column field="gender" header="Gender"></p-column>
-    <p-column styleClass="col-button"  [style]="{'width':'75px'}">
-      <!-- <ng-template pTemplate="header">
-        <button type="button" pButton  icon="fa-edit"></button>
-      </ng-template> -->
-      <ng-template let-candidate="rowData" pTemplate="body">
-        <button type="button" pButton (click)="selectCandidate(candidate)"  icon="fa-edit" ></button>
-      </ng-template>
-    </p-column>
-  </p-dataTable>
-
-  <div *ngIf="candidate">
-      <p-dialog header="Edit Candidate Detail" [(visible)]="display" modal="modal" width="500" [responsive]="true">
-          <app-candidate-detail [candidate]="candidate"></app-candidate-detail>
-        </p-dialog>
+  <div class="row">
+      <button type="button" class="btn btn-primary" (click)="addNewCandidate()">Add New Candidate</button>
   </div>
+  <div class="row">
+      <p-dataTable [value]="candidateList" [rows]="10" [paginator]="true">
+          <p-header>Candidate List</p-header>
+          <p-column field="id" header="Id"></p-column>
+          <p-column field="name" header="Name"></p-column>
+          <p-column field="dob" header="DOB">
+              <ng-template let-row="rowData" pTemplate="body">
+                  {{row.dob | date:'MM/dd/yyyy'}}
+              </ng-template>
+          </p-column>
+          <p-column field="gender" header="Gender"></p-column>
+          <p-column styleClass="col-button"  [style]="{'width':'75px'}">
+            <!-- <ng-template pTemplate="header">
+              <button type="button" pButton  icon="fa-edit"></button>
+            </ng-template> -->
+            <ng-template let-candidate="rowData" pTemplate="body">
+              <button type="button" pButton (click)="selectCandidate(candidate)"  icon="fa-edit" ></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+
+        <div *ngIf="candidate">
+            <app-candidate-detail [candidate]="candidate" (closeDialogEvent)="closeDialogForm($event)" ></app-candidate-detail>
+
+        </div>
+  </div>
+
+
 </div>

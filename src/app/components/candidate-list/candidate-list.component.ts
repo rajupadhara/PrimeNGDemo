@@ -1,3 +1,4 @@
+import { Favourite } from 'app/models/favourite';
 import { Candidate } from './../../models/candidate';
 import { CandidateInfoService } from './../../services/candidate-info.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class CandidateListComponent implements OnInit {
   candidateList: Candidate[];
   candidate: Candidate;
-  display: boolean;
+
   constructor(private candidateService: CandidateInfoService ) { }
 
   ngOnInit() {
@@ -26,11 +27,15 @@ export class CandidateListComponent implements OnInit {
 
   selectCandidate(candidate: Candidate) {
     this.candidate = candidate;
-    this.display = true;
   }
 
+ addNewCandidate() {
+    this.candidate = new Candidate();
+    this.candidate.favouriteCollection = [];
+ }
 
-
-
+ closeDialogForm(evt) {
+    this.candidate = null;
+ }
 
 }

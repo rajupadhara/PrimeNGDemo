@@ -32,4 +32,10 @@ export class CandidateInfoService {
         .map(res => res.json() as any);
   }
 
+  updateCandidate(candidate: Candidate): Observable<any> {
+    const body = JSON.stringify(candidate);
+    return this.http.put('http://localhost:56708/api/Candidate/', body, options)
+      .map(res => res.json() as any);
+  }
+
 }
