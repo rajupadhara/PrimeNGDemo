@@ -1,9 +1,9 @@
-
-import { CandidateInfoService } from './../../services/candidate-info.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Candidate } from './../../models/candidate';
-import { Favourite } from './../../models/favourite';
+import { Candidate } from 'app/models/candidate';
+import { Favourite } from 'app/models/favourite';
 import { Gender } from 'app/models/gender';
+
+import { CandidateInfoService } from 'app/services/candidate-info.service';
 
 
 @Component({
@@ -13,11 +13,11 @@ import { Gender } from 'app/models/gender';
 })
 export class CandidateDetailComponent implements OnInit {
   @Input('candidate') candidate: Candidate;
-  @Output() closeDialogEvent= new EventEmitter<boolean>();
+  @Output() closeDialogEvent= new EventEmitter();
 
   selectedGender: Gender;
   genderList: Gender[] ;
-  display: boolean = true;
+  display: boolean;
   constructor(private candidateService: CandidateInfoService) {
   }
 
@@ -26,6 +26,8 @@ export class CandidateDetailComponent implements OnInit {
       { code: 'M', name: 'Male'},
       { code: 'F', name: 'Female'}
     ];
+    this.display = true;
+
     if ( this.candidate.id > 0 ) {
       const item: Gender = this.genderList.find( f => f.code === this.candidate.gender );
       this.selectedGender = item;
@@ -45,7 +47,6 @@ export class CandidateDetailComponent implements OnInit {
      // const myDate = `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
      // const newDate = new Date(myDate);
      this.candidate.dob = event;
-
   }
 
   saveCandidateInfo() {
@@ -67,7 +68,8 @@ export class CandidateDetailComponent implements OnInit {
 
   closeFormDialog() {
       this.display = false;
-      this.closeDialogEvent.emit(true);
+      this.closeDialogEvent.emit();
   }
+
 
 }

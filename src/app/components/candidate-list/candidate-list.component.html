@@ -24,8 +24,7 @@
         </p-dataTable>
 
         <div *ngIf="candidate">
-            <app-candidate-detail [candidate]="candidate" (closeDialogEvent)="closeDialogForm($event)" ></app-candidate-detail>
-
+            <app-candidate-detail [candidate]="candidate" (closeDialogEvent)="closeDialogForm()" ></app-candidate-detail>
         </div>
   </div>
 

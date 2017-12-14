@@ -1,7 +1,8 @@
-import { Favourite } from 'app/models/favourite';
-import { Candidate } from './../../models/candidate';
-import { CandidateInfoService } from './../../services/candidate-info.service';
 import { Component, OnInit } from '@angular/core';
+import { Favourite } from 'app/models/favourite';
+import { Candidate } from 'app/models/candidate';
+
+import { CandidateInfoService } from 'app/services/candidate-info.service';
 
 @Component({
   selector: 'app-candidate-list',
@@ -20,9 +21,9 @@ export class CandidateListComponent implements OnInit {
   }
 
   getAllCandidates() {
-      return this.candidateService.getAllCandidates().subscribe(
-          data => this.candidateList = data
-      );
+    return this.candidateService.getAllCandidates().subscribe(
+        data => this.candidateList = data
+    );
   }
 
   selectCandidate(candidate: Candidate) {
@@ -34,7 +35,7 @@ export class CandidateListComponent implements OnInit {
     this.candidate.favouriteCollection = [];
  }
 
- closeDialogForm(evt) {
+ closeDialogForm() {
     this.candidate = null;
  }
 

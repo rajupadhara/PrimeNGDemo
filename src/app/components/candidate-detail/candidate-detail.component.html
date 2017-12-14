@@ -1,5 +1,5 @@
 
-<p-dialog header="Edit Candidate Detail" [(visible)]="display" modal="modal" width="500" [responsive]="true">
+<p-dialog header="Edit Candidate Detail" [(visible)]="display" modal="modal" width="500" [responsive]="true" (onHide)="closeFormDialog()" >
     <div style="height: 500px;">
         <form  (ngSubmit)="saveCandidateInfo()" #candiateForm="ngForm">
             <div class="form-group">
