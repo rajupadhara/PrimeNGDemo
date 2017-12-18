@@ -14,6 +14,7 @@ import { CandidateInfoService } from 'app/services/candidate-info.service';
 export class CandidateDetailComponent implements OnInit {
   @Input('candidate') candidate: Candidate;
   @Output() closeDialogEvent= new EventEmitter();
+  @Output() saveCandidateEvent = new EventEmitter<Candidate>();
 
   selectedGender: Gender;
   genderList: Gender[] ;
@@ -52,7 +53,13 @@ export class CandidateDetailComponent implements OnInit {
   saveCandidateInfo() {
     this.candidate.gender = this.selectedGender.code;
     const response = this.candidateService.saveCandiate(this.candidate).subscribe(
-        data => console.log(data)
+        data => {
+            if (data.success) {
+              this.display = false;
+              this.candidate.id = data.id;
+              this.saveCandidateEvent.emit(this.candidate);
+            }
+        }
     );
   }
 

@@ -3,7 +3,7 @@
       <button type="button" class="btn btn-primary" (click)="addNewCandidate()">Add New Candidate</button>
   </div>
   <div class="row">
-      <p-dataTable [value]="candidateList" [rows]="10" [paginator]="true">
+      <p-dataTable [value]="candidateList" [rows]="10" [paginator]="true" [immutable]="false">
           <p-header>Candidate List</p-header>
           <p-column field="id" header="Id"></p-column>
           <p-column field="name" header="Name"></p-column>
@@ -13,18 +13,20 @@
               </ng-template>
           </p-column>
           <p-column field="gender" header="Gender"></p-column>
-          <p-column styleClass="col-button"  [style]="{'width':'75px'}">
-            <!-- <ng-template pTemplate="header">
-              <button type="button" pButton  icon="fa-edit"></button>
-            </ng-template> -->
+          <p-column styleClass="col-button"  [style]="{'width':'75px','text-align':'center'}" >
             <ng-template let-candidate="rowData" pTemplate="body">
               <button type="button" pButton (click)="selectCandidate(candidate)"  icon="fa-edit" ></button>
+            </ng-template>
+          </p-column>
+          <p-column styleClass="col-button" [style]="{'width':'75px','text-align':'center'}" >
+            <ng-template let-candidate="rowData" pTemplate="body">
+              <button type="button" pButton (click)="deleteCandidate(candidate)"  icon="fa-trash" class="ui-button-danger" ></button>
             </ng-template>
           </p-column>
         </p-dataTable>
 
         <div *ngIf="candidate">
-            <app-candidate-detail [candidate]="candidate" (closeDialogEvent)="closeDialogForm()" ></app-candidate-detail>
+            <app-candidate-detail [candidate]="candidate" (closeDialogEvent)="closeDialogForm()" (saveCandidateEvent)="saveCandidate($event)" ></app-candidate-detail>
         </div>
   </div>
 

@@ -1,3 +1,4 @@
+import { Response } from './../models/response';
 
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions  } from '@angular/http';
@@ -26,9 +27,14 @@ export class CandidateInfoService {
         .map(res =>  res.json() as Candidate[]);
   }
 
-  saveCandiate(candidate: Candidate): Observable<any> {
+  saveCandiate(candidate: Candidate): Observable<Response> {
       const body = JSON.stringify(candidate);
       return this.http.post(this.webApiUri, body, options)
-        .map(res => res.json() as any);
+        .map(res => res.json() as Response);
+  }
+
+  deleteCandiate(id: number): Observable<Response> {
+    return this.http.delete(this.webApiUri + '/' + id)
+    .map(res =>  res.json() as Response);
   }
 }

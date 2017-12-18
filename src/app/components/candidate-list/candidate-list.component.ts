@@ -30,13 +30,38 @@ export class CandidateListComponent implements OnInit {
     this.candidate = candidate;
   }
 
- addNewCandidate() {
-    this.candidate = new Candidate();
-    this.candidate.favouriteCollection = [];
- }
+  deleteCandidate(candidate: Candidate) {
+    const response = this.candidateService.deleteCandiate(candidate.id).subscribe(
+        data => {
+            console.log(data.success);
+            if (data.success) {
+                this.candidateList = this.candidateList.filter(c => c !== candidate);
+            }
+        }
+    );
 
- closeDialogForm() {
+  }
+
+  addNewCandidate() {
+      this.candidate = new Candidate();
+      this.candidate.favouriteCollection = [];
+  }
+
+  saveCandidate(candidate: Candidate) {
+    console.log('save parent trigger');
+    this.candidateList.push(candidate);
+    // this.candidateList.push( {
+    //     favouriteCollection : candidate.favouriteCollection,
+    //     id : candidate.id,
+    //     name : candidate.name,
+    //     dob : candidate.dob,
+    //     gender: candidate.gender
+    // });
     this.candidate = null;
- }
+  }
+
+  closeDialogForm() {
+      this.candidate = null;
+  }
 
 }
