@@ -1,40 +1,32 @@
-import { Response } from './../models/response';
-
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions  } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Candidate } from 'app/models/candidate';
+import { Response } from './../models/response';
 
-import { Candidate } from './../models/candidate';
-
-
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
-const headers = new Headers({ 'Content-Type': 'application/json' });
-const options = new RequestOptions({ headers: headers });
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class CandidateInfoService {
   webApiUri: string = 'http://localhost:56708/api/Candidate';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
-  getAllCandidates(): Observable<Candidate[]> {
-    return this.http.get(this.webApiUri)
-        .map(res =>  res.json() as Candidate[]);
+  getAllCandidates() {
+    // return this.http.get(this.webApiUri)
+    //     .map(res =>  res.json() as Candidate[]);
+
+      return this.http.get<Candidate[]>(this.webApiUri);
   }
 
-  saveCandiate(candidate: Candidate): Observable<Response> {
+  saveCandiate(candidate: Candidate) {
       const body = JSON.stringify(candidate);
-      return this.http.post(this.webApiUri, body, options)
-        .map(res => res.json() as Response);
+      return this.http.post<Response> (this.webApiUri, body, httpOptions);
   }
 
-  deleteCandiate(id: number): Observable<Response> {
-    return this.http.delete(this.webApiUri + '/' + id)
-    .map(res =>  res.json() as Response);
+  deleteCandiate(id: number) {
+    return this.http.delete<Response>(this.webApiUri + '/' + id);
   }
 }

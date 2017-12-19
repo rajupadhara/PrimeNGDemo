@@ -21,8 +21,10 @@ export class CandidateListComponent implements OnInit {
   }
 
   getAllCandidates() {
-    return this.candidateService.getAllCandidates().subscribe(
-        data => this.candidateList = data
+    this.candidateService.getAllCandidates().subscribe(
+      data => {
+        this.candidateList = data
+      }
     );
   }
 
