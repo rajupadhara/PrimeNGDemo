@@ -23,7 +23,7 @@ export class CandidateInfoService {
 
   saveCandiate(candidate: Candidate) {
       const body = JSON.stringify(candidate);
-      return this.http.post<Response> (this.webApiUri, body, httpOptions);
+      return this.http.post<Response>(this.webApiUri, body, httpOptions);
   }
 
   deleteCandiate(id: number) {

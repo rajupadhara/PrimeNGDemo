@@ -3,6 +3,7 @@ import { Favourite } from 'app/models/favourite';
 import { Candidate } from 'app/models/candidate';
 
 import { CandidateInfoService } from 'app/services/candidate-info.service';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'app-candidate-list',
@@ -13,7 +14,8 @@ export class CandidateListComponent implements OnInit {
   candidateList: Candidate[];
   candidate: Candidate;
 
-  constructor(private candidateService: CandidateInfoService ) { }
+  constructor(private candidateService: CandidateInfoService,
+              private confirmationService: ConfirmationService ) { }
 
   ngOnInit() {
     this.getAllCandidates();
@@ -33,15 +35,18 @@ export class CandidateListComponent implements OnInit {
   }
 
   deleteCandidate(candidate: Candidate) {
-    const response = this.candidateService.deleteCandiate(candidate.id).subscribe(
-        data => {
-            console.log(data.success);
-            if (data.success) {
-                this.candidateList = this.candidateList.filter(c => c !== candidate);
+    this.confirmationService.confirm({
+      message: 'Are you sure to delete this record?',
+      accept: () => {
+          this.candidateService.deleteCandiate(candidate.id).subscribe(
+            data => {
+                if (data.success) {
+                    this.candidateList = this.candidateList.filter(c => c !== candidate);
+                }
             }
-        }
-    );
-
+        );
+      }
+    });
   }
 
   addNewCandidate() {
